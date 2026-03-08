@@ -107,17 +107,24 @@
             font-size: 0.9em;
             line-height: 1.5;
         }
-        /* 图片响应式样式 */
+        /* 图片响应式样式 - 强制所有图片自适应 */
         .summary img {
-            max-width: 100%;
-            height: auto;
+            max-width: 100% !important;
+            width: 100% !important;
+            height: auto !important;
             border-radius: 8px;
             margin: 10px 0;
             display: block;
+            object-fit: cover;
         }
         /* 移除 feat-image 容器的样式 */
         .summary .feat-image {
             display: none;
+        }
+        /* 确保图片容器不会溢出 */
+        .summary {
+            overflow: hidden;
+            word-wrap: break-word;
         }
         hr {
             border: none;
@@ -141,7 +148,7 @@
         <header>
             <h1>🚗 Herclus</h1>
             <p>全球汽车市场日报</p>
-            <div class="update-time">更新时间: 2026年03月08日 13:39</div>
+            <div class="update-time">更新时间: 2026年03月08日 13:46</div>
         </header>
         
         <div class="card">
@@ -257,27 +264,27 @@
 
 <ul class="news-list">
 <li><a href="https://www.autocar.co.uk/car-news/motorsport/damn-fine-value-when-ford-hit-f1-jackpot-cosworth-dfv" class="news-title" target="_blank" rel="noopener noreferrer">Damn Fine Value: When Ford hit F1 jackpot with Cosworth DFV</a>
-<p class="summary"><a href="https://www.autocar.co.uk/car-news/motorsport/damn-fine-value-when-ford-hit-f1-jackpot-cosworth-dfv"><img alt="7 1967 dutch gp from newspress colour" height="125" src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car<em class="source-desc">review</em>image_190/public/images/car-reviews/first-driv...</p></li>
+<p class="summary"><a href="https://www.autocar.co.uk/car-news/motorsport/damn-fine-value-when-ford-hit-f1-jackpot-cosworth-dfv"><img alt="7 1967 dutch gp from newspress colour"  src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car<em class="source-desc">review</em>image_190/public/images/car-reviews/first-driv...</p></li>
 </ul>
 
 <ul class="news-list">
 <li><a href="https://www.autocar.co.uk/car-news/motorsport-f1/ted-kravitz-i-want-make-everyone-feel-f1-insiders" class="news-title" target="_blank" rel="noopener noreferrer">Ted Kravitz: "I want to make everyone feel like F1 insiders"</a>
-<p class="summary"><a href="https://www.autocar.co.uk/car-news/motorsport-f1/ted-kravitz-i-want-make-everyone-feel-f1-insiders"><img alt="2 Ted kravitz GettyImages 2142420606" height="125" src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car<em class="source-desc">review</em>image_190/public/images/car-reviews/first-drives...</p></li>
+<p class="summary"><a href="https://www.autocar.co.uk/car-news/motorsport-f1/ted-kravitz-i-want-make-everyone-feel-f1-insiders"><img alt="2 Ted kravitz GettyImages 2142420606"  src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car<em class="source-desc">review</em>image_190/public/images/car-reviews/first-drives...</p></li>
 </ul>
 
 <ul class="news-list">
 <li><a href="https://www.autocar.co.uk/car-news/motorsport-f1/ford-returns-f1-plan-win-and-improve-transit" class="news-title" target="_blank" rel="noopener noreferrer">Ford returns to F1 with a plan to win - and improve the Transit</a>
-<p class="summary"><a href="https://www.autocar.co.uk/car-news/motorsport-f1/ford-returns-f1-plan-win-and-improve-transit"><img alt="1 2026 Ford Racing Season Launch Event 01" height="125" src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car<em class="source-desc">review</em>image_190/public/images/car-reviews/first-drives...</p></li>
+<p class="summary"><a href="https://www.autocar.co.uk/car-news/motorsport-f1/ford-returns-f1-plan-win-and-improve-transit"><img alt="1 2026 Ford Racing Season Launch Event 01"  src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car<em class="source-desc">review</em>image_190/public/images/car-reviews/first-drives...</p></li>
 </ul>
 
 <ul class="news-list">
 <li><a href="https://www.autocar.co.uk/car-news/slideshow/top-10-world%E2%80%99s-longest-road-tunnels-0" class="news-title" target="_blank" rel="noopener noreferrer">Top 10: World’s longest road tunnels</a>
-<p class="summary"><a href="https://www.autocar.co.uk/car-news/slideshow/top-10-world%E2%80%99s-longest-road-tunnels-0"><img alt="Laerdal Tunnel" height="125" src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car<em class="source-desc">review</em>image_190/public/images/car-reviews/first-drives/legacy/laerdal-tunnel.jpg?ito...</p></li>
+<p class="summary"><a href="https://www.autocar.co.uk/car-news/slideshow/top-10-world%E2%80%99s-longest-road-tunnels-0"><img alt="Laerdal Tunnel"  src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car<em class="source-desc">review</em>image_190/public/images/car-reviews/first-drives/legacy/laerdal-tunnel.jpg?ito...</p></li>
 </ul>
 
 <ul class="news-list">
 <li><a href="https://www.autocar.co.uk/car-news/features/jaecoo-7-ultimate-test-my-family-holiday-%C2%A330k-chinese-suv" class="news-title" target="_blank" rel="noopener noreferrer">Jaecoo 7 - the ultimate test: My family holiday in £30k Chinese SUV</a>
-<p class="summary"><a href="https://www.autocar.co.uk/car-news/features/jaecoo-7-ultimate-test-my-family-holiday-%C2%A330k-chinese-suv"><img alt="jaecoo7" height="125" src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car<em class="source-desc">review</em>image_190/public/images/car-reviews/first-drives/legacy/jaecoo7.jpg?i...</p></li>
+<p class="summary"><a href="https://www.autocar.co.uk/car-news/features/jaecoo-7-ultimate-test-my-family-holiday-%C2%A330k-chinese-suv"><img alt="jaecoo7"  src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car<em class="source-desc">review</em>image_190/public/images/car-reviews/first-drives/legacy/jaecoo7.jpg?i...</p></li>
 </ul>
 
 
@@ -314,36 +321,6 @@
 <hr>
 
 <h2>🌏 亚洲汽车市场</h2>
-
-
-<h3>Carscoops</h3>
-
-<em class="source-desc">全球汽车新闻聚合</em>
-
-<ul class="news-list">
-<li><a href="https://www.carscoops.com/2026/03/jeep-renegade-hemi-swap-project/" class="news-title" target="_blank" rel="noopener noreferrer">Someone Built The Jeep Renegade Stellantis Never Gave Us</a>
-<p class="summary"><div><img alt="" class="attachment-large size-large wp-post-image" height="575" src="https://www.carscoops.com/wp-content/uploads/2026/03/HEMI-Swapped-Jeep-Renegade-Pulled-Out-of-the-Garage-for-the-First-Time-0-1-screenshot-copy-1024x575.jpg" style="margin-bottom: 15px;" width="1024" /></div>This He...</p></li>
-</ul>
-
-<ul class="news-list">
-<li><a href="https://www.carscoops.com/2026/03/us-export-production-bmw/" class="news-title" target="_blank" rel="noopener noreferrer">America’s Biggest Car Exporter By Value Is A German Brand</a>
-<p class="summary"><div><img alt="" class="attachment-large size-large wp-post-image" height="576" src="https://www.carscoops.com/wp-content/uploads/2026/03/P90631581<em class="source-desc">highRes</em>bmw-manufacturing-re-copy-1-1024x576.jpg" style="margin-bottom: 15px;" width="1024" /></div>The biggest car exporter by value in the US is not a...</p></li>
-</ul>
-
-<ul class="news-list">
-<li><a href="https://www.carscoops.com/2026/03/real-time-crime-center-police/" class="news-title" target="_blank" rel="noopener noreferrer">Police Video Shows What Happens When A Smart Camera Spots Your Car</a>
-<p class="summary"><div><img alt="" class="attachment-large size-large wp-post-image" height="576" src="https://www.carscoops.com/wp-content/uploads/2026/03/aewrfawefwegtyuyjmkuy-copy-1024x576.jpg" style="margin-bottom: 15px;" width="1024" /></div>These best-case scenarios will still leave some privacy advocates with ...</p></li>
-</ul>
-
-<ul class="news-list">
-<li><a href="https://www.carscoops.com/2026/03/audi-rs5-goes-back-to-its-roots-as-the-bmw-m4-rival-ingolstadt-refuses-to-build/" class="news-title" target="_blank" rel="noopener noreferrer">RS5 Coupe Is The BMW M4 Rival Audi Refuses To Build</a>
-<p class="summary"><div><img alt="" class="attachment-large size-large wp-post-image" height="576" src="https://www.carscoops.com/wp-content/uploads/2026/03/gvrfv-1024x576.jpg" style="margin-bottom: 15px;" width="1024" /></div>Audi’s latest RS5 lineup dropped the coupe, but this digital concept shows how a two-door ve...</p></li>
-</ul>
-
-<ul class="news-list">
-<li><a href="https://www.carscoops.com/2026/03/bmw-m4-laser-headlight-repair/" class="news-title" target="_blank" rel="noopener noreferrer">The Cost To Replace A BMW Laser Headlight? You Might Want To Sit Down</a>
-<p class="summary"><div><img alt="" class="attachment-large size-large wp-post-image" height="576" src="https://www.carscoops.com/wp-content/uploads/2026/03/BMW-M3-Headlight-replacement-2-copy-1024x576.jpg" style="margin-bottom: 15px;" width="1024" /></div>A failed seal turned one M4 laser headlight into a shockingly ...</p></li>
-</ul>
 
 
 <hr>
@@ -414,7 +391,7 @@
 
 <hr>
 
-*报告生成时间: 2026-03-08 13:39*  
+*报告生成时间: 2026-03-08 13:46*  
 *共收录 21 个汽车 RSS 源*  
 *数据来源: 美洲、欧洲、亚洲主流汽车媒体*
 
