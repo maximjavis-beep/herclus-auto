@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚗 Herclus 全球汽车市场日报</title>
+    
+    <!-- 微信分享优化 - Open Graph -->
+    <meta property="og:title" content="🚗 Herclus 全球汽车市场日报">
+    <meta property="og:description" content="每日自动抓取美洲、欧洲、亚洲三大汽车市场最新动态">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://herclus.vercel.app/">
+    <meta property="og:image" content="https://herclus.vercel.app/cover.jpg">
+    
+    <!-- 微信专用 -->
+    <meta name="description" content="每日自动抓取美洲、欧洲、亚洲三大汽车市场最新动态">
+    <meta itemprop="name" content="🚗 Herclus 全球汽车市场日报">
+    <meta itemprop="description" content="每日自动抓取美洲、欧洲、亚洲三大汽车市场最新动态">
+    <meta itemprop="image" content="https://herclus.vercel.app/cover.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🚗 Herclus 全球汽车市场日报">
+    <meta name="twitter:description" content="每日自动抓取美洲、欧洲、亚洲三大汽车市场最新动态">
+    <meta name="twitter:image" content="https://herclus.vercel.app/cover.jpg">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .tagline {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        header p { font-size: 1em; opacity: 0.9; }
+        .update-time {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #ff6b35;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5em;
+        }
+        .card h3 {
+            color: #555;
+            margin: 25px 0 10px 0;
+            padding-left: 10px;
+            border-left: 3px solid #f7931e;
+            font-size: 1.2em;
+        }
+        .source-desc {
+            color: #888;
+            font-size: 0.85em;
+            display: block;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        .news-list { list-style: none; }
+        .news-list li {
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #ff6b35;
+            transition: all 0.3s ease;
+        }
+        .news-list li:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        .news-title {
+            font-weight: 600;
+            color: #ff6b35;
+            text-decoration: none;
+            font-size: 1em;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .news-title:hover { color: #f7931e; }
+        .summary {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 30px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+        }
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .tagline { font-size: 1em; }
+            .card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚗 Herclus</h1>
+            <div class="tagline">美洲速度 · 欧洲精工 · 亚洲创新</div>
+            <p>全球汽车市场日报</p>
+            <div class="update-time">初始化中...</div>
+        </header>
+        
+        <div class="card">
+            <h2>🌎 美洲汽车市场</h2>
+            <p style="color: #666; text-align: center; padding: 40px;">报告生成中，请稍候...</p>
+        </div>
+        
+        <footer>
+            <p>Herclus Auto Daily · PureCut</p>
+        </footer>
+    </div>
+    
+    <!-- 微信分享优化脚本 -->
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <script>
+        var isWeixin = /MicroMessenger/i.test(navigator.userAgent);
+        
+        if (isWeixin) {
+            document.addEventListener('WeixinJSBridgeReady', function() {
+                WeixinJSBridge.call('hideOptionMenu');
+                WeixinJSBridge.call('showOptionMenu');
+            });
+        }
+        
+        var shareData = {
+            title: '🚗 Herclus 全球汽车市场日报',
+            desc: '每日自动抓取美洲、欧洲、亚洲三大汽车市场最新动态',
+            link: 'https://herclus.vercel.app/',
+            imgUrl: 'https://herclus.vercel.app/cover.jpg',
+            success: function() {},
+            cancel: function() {}
+        };
+        
+        if (typeof wx !== 'undefined') {
+            wx.ready(function() {
+                wx.onMenuShareTimeline(shareData);
+                wx.onMenuShareAppMessage(shareData);
+                wx.onMenuShareQQ(shareData);
+                wx.onMenuShareWeibo(shareData);
+            });
+        }
+    </script>
+</body>
+</html>
