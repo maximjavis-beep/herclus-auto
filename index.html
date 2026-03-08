@@ -23,7 +23,10 @@
     <meta name="twitter:title" content="🚗 Herclus 全球汽车市场日报">
     <meta name="twitter:description" content="每日自动抓取美洲、欧洲、亚洲三大汽车市场最新动态">
     <meta name="twitter:image" content="https://herclus-auto.vercel.app/cover.jpg">
-
+    
+    <!-- 允许跨域图片加载 -->
+    <meta name="referrer" content="no-referrer">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -368,6 +371,24 @@
         </footer>
     </div>
 
+    <!-- 图片加载优化脚本 -->
+    <script>
+        // 为所有图片添加 referrerpolicy
+        document.addEventListener('DOMContentLoaded', function() {
+            var images = document.querySelectorAll('img');
+            images.forEach(function(img) {
+                if (!img.hasAttribute('referrerpolicy')) {
+                    img.setAttribute('referrerpolicy', 'no-referrer');
+                }
+                // 图片加载错误处理
+                img.onerror = function() {
+                    console.log('Image failed to load:', this.src);
+                    this.style.display = 'none';
+                };
+            });
+        });
+    </script>
+    
     <!-- 微信分享优化脚本 -->
     <script src="https://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <script>
