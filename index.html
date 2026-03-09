@@ -110,30 +110,110 @@
             font-size: 0.9em;
             line-height: 1.5;
         }
-        /* 图片响应式样式 - 强制所有图片自适应 */
-        .summary img {
-            max-width: 100% !important;
-            width: 100% !important;
-            height: auto !important;
-            border-radius: 8px;
-            margin: 10px 0;
-            display: block;
-            object-fit: cover;
+        
+        /* ===== 图片容器和自适应样式 ===== */
+        .img-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin: 12px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        /* 移除 feat-image 容器的样式 */
-        .summary .feat-image {
+        
+        .img-container.img-loaded {
+            background: transparent;
+            min-height: auto;
+        }
+        
+        .img-container.img-error {
+            background: #f0f0f0;
+            min-height: 80px;
+        }
+        
+        .content-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 12px;
+            display: block;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .img-container.img-loaded .content-img {
+            opacity: 1;
+        }
+        
+        .img-container.img-error .content-img {
             display: none;
         }
-        /* 确保图片容器不会溢出 */
-        .summary {
-            overflow: hidden;
-            word-wrap: break-word;
+        
+        .img-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
         }
-        /* 确保亚洲市场等 div 包裹的图片在移动端自适应 */
-        .summary div {
-            max-width: 100%;
-            width: 100%;
-            overflow: hidden;
+        
+        .img-container.img-loaded .img-placeholder {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .img-container.img-error .img-placeholder {
+            opacity: 0.3;
+            font-size: 1.5em;
+        }
+        
+        /* 摘要中的图片容器 */
+        .summary .img-container {
+            margin: 8px 0;
+            border-radius: 8px;
+            min-height: 80px;
+        }
+        
+        .summary .content-img {
+            max-height: 300px;
+            border-radius: 8px;
+        }
+        
+        /* ===== 响应式设计 ===== */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            header h1 { font-size: 1.8em; }
+            header { padding: 30px 15px; }
+            .card { padding: 20px; border-radius: 12px; }
+            .card h2 { font-size: 1.3em; }
+            .card h3 { font-size: 1.1em; }
+            .news-list li { padding: 12px 15px; }
+            .content-img { max-height: 300px; }
+            .img-container { min-height: 100px; border-radius: 8px; }
+            .summary .content-img { max-height: 200px; }
+        }
+        
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.5em; }
+            .card { padding: 15px; }
+            .content-img { max-height: 250px; }
+            .img-container { min-height: 80px; }
+            .summary { font-size: 0.85em; }
+        }
+        
+        @media (min-width: 1400px) {
+            .container { max-width: 1400px; }
+            .content-img { max-height: 500px; }
         }
         hr {
             border: none;
@@ -157,7 +237,7 @@
         <header>
             <h1>🚗 Herclus</h1>
             <p>全球汽车市场日报</p>
-            <div class="update-time">更新时间: 2026年03月09日 22:41</div>
+            <div class="update-time">更新时间: 2026年03月10日 00:00</div>
         </header>
         
         <div class="card">
@@ -172,60 +252,45 @@
 
 <em class="source-desc">美国知名汽车评测杂志</em>
 
+<li><a href="https://www.caranddriver.com/news/a70677481/ford-backup-camera-windshield-wiper-recalls/" class="news-title" target="_blank" rel="noopener noreferrer">Ford Issues Recall for 1.7 Million SUVs Over Backup Camera Issues</a>
+<div class="summary"><div class="img-container">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/2022-ford-bronco-badlands-advanced-4x4-1199-1668004611.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>Two separate rearview camera recalls, as well as a windshield wiper recall, account for more than two million vehicles recalled in one day from the Blue Oval. ...</div></li>
+
+<li><a href="https://www.caranddriver.com/news/a70678928/ford-mustang-dark-horse-sc-pricing-leaked/" class="news-title" target="_blank" rel="noopener noreferrer">Leaked: Ford Mustang Dark Horse SC Could Start Well over $100K</a>
+<div class="summary"><div class="img-container">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/2026-ford-mustang-dark-horse-sc-106-69680b96d5e05.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>If the leaked dealer memo proves true, the Dark Horse SC would start more than $25,000 higher than the car it replaces, the Mustang Shelby GT500....</div></li>
+
+<li><a href="https://www.caranddriver.com/aston-martin/vantage-2027" class="news-title" target="_blank" rel="noopener noreferrer">2027 Aston Martin Vantage</a>
+<div class="summary"><div class="img-container">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/2026-aston-martin-vantage-s-143-697ba3a01ab6a.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>Review, Pricing, and Specs...</div></li>
+
 <li><a href="https://www.caranddriver.com/reviews/a70637493/2026-dodge-charger-rt-drive/" class="news-title" target="_blank" rel="noopener noreferrer">2026 Dodge Charger R/T Driven: The Lesser of Two Sixes</a>
-<div class="summary"><img src="https://hips.hearstapps.com/hmg-prod/images/2026-dodge-charger-r-t-116-69aae7ec2f465.jpg" class="rss-image" />With the 420-hp standard-output Hurricane inline-six under its hood, the new entry-level Charger R/T trades power for parsimony....</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/2026-dodge-charger-r-t-116-69aae7ec2f465.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>With the 420-hp standard-output Hurricane inline-six under its hood, the new entry-level Charger R/T trades power for parsimony....</div></li>
 
 <li><a href="https://www.caranddriver.com/photos/g70638214/2026-dodge-charger-rt-drive-gallery/" class="news-title" target="_blank" rel="noopener noreferrer">View Photos of the 2026 Dodge Charger R/T</a>
-<div class="summary"><img src="https://hips.hearstapps.com/hmg-prod/images/2026-dodge-charger-r-t-116-69aae7ec2f465.jpg" class="rss-image" />See the exterior and interior of the 2026 Dodge Charger R/T from every angle....</div></li>
-
-<li><a href="https://www.caranddriver.com/photos/g70645356/2027-chevrolet-bolt-drive-gallery/" class="news-title" target="_blank" rel="noopener noreferrer">View Photos of the 2027 Chevrolet Bolt</a>
-<div class="summary"><img src="https://hips.hearstapps.com/hmg-prod/images/2027-chevrolet-bolt-104-69ab46d404881.jpg" class="rss-image" />See the exterior and interior of the 2027 Chevrolet Bolt from every angle....</div></li>
-
-<li><a href="https://www.caranddriver.com/reviews/a70627323/2027-chevrolet-bolt-drive/" class="news-title" target="_blank" rel="noopener noreferrer">Driven: The 2027 Chevrolet Bolt Strikes Back</a>
-<div class="summary"><img src="https://hips.hearstapps.com/hmg-prod/images/2027-chevrolet-bolt-103-69ab46d4288bf.jpg" class="rss-image" />The sheetmetal might be familiar, but there are significant changes underneath....</div></li>
-
-<li><a href="https://www.caranddriver.com/photos/g70620687/2027-volvo-ex60-first-ride-gallery/" class="news-title" target="_blank" rel="noopener noreferrer">View Photos of the 2027 Volvo EX60</a>
-<div class="summary"><img src="https://hips.hearstapps.com/hmg-prod/images/2027-volvo-ex60-129-69a9a32f9b32c.jpg" class="rss-image" />See the exterior of the 2027 Volvo EX60 from every angle....</div></li>
-
-
-<h3>Electrek</h3>
-
-<em class="source-desc">电动汽车与清洁能源新闻</em>
-
-<li><a href="https://electrek.co/2026/03/09/porsche-launch-panamera-ev-caveat/" class="news-title" target="_blank" rel="noopener noreferrer">Porsche may launch a Panamera EV after all, but there’s a caveat</a>
-<div class="summary"><img src="https://electrek.co/wp-content/uploads/sites/3/2026/03/Porsche-Panamera-EV-1.jpeg?quality=82&#038;strip=all&#038;w=1400" class="rss-image" />Porsche is considering introducing the next-generation Panamera with EV, plug-in hybrid (PHEV), and ICE powertrains, but it may take the name of another model in its lineup.</div></li>
-
-
-
- more…...
-
-<li><a href="https://electrek.co/2026/03/09/donut-lab-solid-state-battery-self-discharge-test-vtt/" class="news-title" target="_blank" rel="noopener noreferrer">Donut Lab solid-state battery retains 97.7% charge after 10 days in third test</a>
-<div class="summary"><img src="https://electrek.co/wp-content/uploads/sites/3/2026/02/Donut-Lab-solid-state-battery.jpg?quality=82&#038;strip=all&#038;w=1600" class="rss-image" />Donut Lab has released its third independent test report from VTT, the Finnish Technical Research Centre, and it confirms another claim: the solid-state battery retains 97.7% of its charged capacity after sitting idle for 10 days.</div></li>
-
-
-
-The new report (VTT-CR-00125-26) adds self-discharge performance t...
-
-<li><a href="https://electrek.co/2026/03/09/rad-power-bikes-says-it-will-soon-build-e-bikes-in-the-us-but-can-it-really/" class="news-title" target="_blank" rel="noopener noreferrer">Rad Power Bikes says it will soon build e-bikes in the US. But can it really?</a>
-<div class="summary"><img src="https://electrek.co/wp-content/uploads/sites/3/2024/05/RadRunner-2-header.webp?w=1600" class="rss-image" />Rad Power Bikes’ new ownership says the brand is about to be reborn after being bought out of bankruptcy – and part of that rebirth includes building e-bikes in the United States.</div></li>
-
-
-
-But if that sounds familiar, it’s because we’ve heard similar promises before. And while the idea of American-made e-...
-
-<li><a href="https://electrek.co/2026/03/09/2027-chevy-bolt-review-whys-this-great-budget-ev-only-here-for-a-limited-time/" class="news-title" target="_blank" rel="noopener noreferrer">2027 Chevy Bolt review: why’s this great, budget EV only here for a ‘limited time’?</a>
-<div class="summary"><img src="https://electrek.co/wp-content/uploads/sites/3/2026/03/P10664642.jpg?quality=82&#038;strip=all&#038;w=1600" class="rss-image" />The Bolt is back by popular demand, and we got to drive it in the hills of Malibu to test out its myriad improvements over the old model, including an all-new battery, faster charging and improved Super Cruise hands-off driving system.</div></li>
-
-
-
-It’s also in dealerships now at the most affordable EV price ...
-
-<li><a href="https://electrek.co/2026/03/09/zoox-expands-robotaxi-testing-phoenix-dallas-autonomous/" class="news-title" target="_blank" rel="noopener noreferrer">Zoox expands robotaxi testing to Phoenix and Dallas as autonomous miles surpass 1 million</a>
-<div class="summary"><img src="https://electrek.co/wp-content/uploads/sites/3/2026/03/Zoox-Phoenix-Dallas-hero.jpg?quality=82&#038;strip=all&#038;w=1400" class="rss-image" />Autonomous mobility company Zoox is expanding its US testing footprint, adding Phoenix and Dallas as new markets for its robotaxi development program. The Zoox expansion marks another step as the Amazon-owned startup continues scaling operations across major metro areas.</div></li>
-
-
-
- more…...
+<div class="summary"><div class="img-container">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/2026-dodge-charger-r-t-116-69aae7ec2f465.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>See the exterior and interior of the 2026 Dodge Charger R/T from every angle....</div></li>
 
 
 <h3>Jalopnik</h3>
@@ -233,19 +298,44 @@ It’s also in dealerships now at the most affordable EV price ...
 <em class="source-desc">汽车文化与生活方式</em>
 
 <li><a href="https://www.jalopnik.com/2117506/features-wish-could-download-onto-cars-reader-answers/" class="news-title" target="_blank" rel="noopener noreferrer">These Are The Features You Wish You Could Simply Download Onto Your Cars</a>
-<div class="summary"><img src="https://www.jalopnik.com/img/gallery/these-are-the-features-you-wish-you-could-simply-download-onto-your-cars/l-intro-1772836849.jpg" class="rss-image" />I knew that several of you clever little people inside my computer would say, "a manual transmission" or "physical buttons."...</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://www.jalopnik.com/img/gallery/these-are-the-features-you-wish-you-could-simply-download-onto-your-cars/l-intro-1772836849.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>I knew that several of you clever little people inside my computer would say, "a manual transmission" or "physical buttons."...</div></li>
 
 <li><a href="https://www.jalopnik.com/2118819/saudi-arabia-selling-oil/" class="news-title" target="_blank" rel="noopener noreferrer">Saudi Arabia Is Trying New Methods To Keep Selling Oil</a>
-<div class="summary"><img src="https://www.jalopnik.com/img/gallery/saudi-arabia-is-trying-new-methods-to-keep-selling-oil/l-intro-1773066015.jpg" class="rss-image" />We're looking at Saudi attempts to keep moving oil, as well as dealer attempts to keep moving EVs and more....</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://www.jalopnik.com/img/gallery/saudi-arabia-is-trying-new-methods-to-keep-selling-oil/l-intro-1773066015.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>We're looking at Saudi attempts to keep moving oil, as well as dealer attempts to keep moving EVs and more....</div></li>
 
 <li><a href="https://www.jalopnik.com/2118537/2026-dodge-charger-sixpack-rt-4door-first-drive-review/" class="news-title" target="_blank" rel="noopener noreferrer">2026 Dodge Charger Sixpack R/T 4-Door Aims For Broad Appeal, And Kind Of Succeeds</a>
-<div class="summary"><img src="https://www.jalopnik.com/img/gallery/2026-dodge-charger-sixpack-rt-4door-first-drive-review/l-intro-1773064972.jpg" class="rss-image" />I'm sure this car will help with Dodge's sales woes, I just worry that it's not quite enough of a good value while also not quite performance-oriented enough....</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://www.jalopnik.com/img/gallery/2026-dodge-charger-sixpack-rt-4door-first-drive-review/l-intro-1773064972.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>I'm sure this car will help with Dodge's sales woes, I just worry that it's not quite enough of a good value while also not quite performance-oriented enough....</div></li>
 
 <li><a href="https://www.jalopnik.com/2117468/new-rules-to-fix-flying-reader-question/" class="news-title" target="_blank" rel="noopener noreferrer">What Rules Would You Introduce To Fix Flying?</a>
-<div class="summary"><img src="https://www.jalopnik.com/img/gallery/what-rules-would-you-introduce-to-fix-flying/l-intro-1772834743.jpg" class="rss-image" />Flying is usually a miserable experience. I want to hear your ideas on how to move that needle from "a complete mess" to "fairly tolerable."...</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://www.jalopnik.com/img/gallery/what-rules-would-you-introduce-to-fix-flying/l-intro-1772834743.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>Flying is usually a miserable experience. I want to hear your ideas on how to move that needle from "a complete mess" to "fairly tolerable."...</div></li>
 
 <li><a href="https://www.jalopnik.com/2117390/1994-toyota-corolla-wagon-6500-dollars-nice-price/" class="news-title" target="_blank" rel="noopener noreferrer">At $6,500, Is This 1994 Toyota Corolla Wagon An Unexpected Bargain?</a>
-<div class="summary"><img src="https://www.jalopnik.com/img/gallery/at-6500-is-this-1994-toyota-corolla-wagon-an-unexpected-bargain/l-intro-1772832065.jpg" class="rss-image" />The mods certainly make this Corolla stand out, but will they put off potential buyers?...</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://www.jalopnik.com/img/gallery/at-6500-is-this-1994-toyota-corolla-wagon-an-unexpected-bargain/l-intro-1772832065.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>The mods certainly make this Corolla stand out, but will they put off potential buyers?...</div></li>
 
 
 <hr>
@@ -257,8 +347,26 @@ It’s also in dealerships now at the most affordable EV price ...
 
 <em class="source-desc">英国权威汽车媒体</em>
 
+<li><a href="https://www.autocar.co.uk/car-news/best-cars/best-supercars" class="news-title" target="_blank" rel="noopener noreferrer">The best supercars – driven, rated and ranked</a>
+<div class="summary"><div class="img-container">
+            <img src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car_review_image_190/public/images/car-reviews/first-drives/legacy/best-supercars-2026-autocar.jpg?itok=Kl204hcR" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div></div></li>
+
+The latest Ferraris, Lamborghinis, McLarens… our road testers rank them and name the best
+
+Supercars represent the pinnacle of automotive engineering, occupying an arena in which manufacturers push the boundaries of performance, ride and handling.
+Over the years the class has stretched to include ...
+
 <li><a href="https://www.autocar.co.uk/opinion/new-cars/152mph-kangaroo-smash-shows-why-cars-and-creatures-dont-mix" class="news-title" target="_blank" rel="noopener noreferrer">152mph kangaroo smash shows why cars and creatures don't mix</a>
-<div class="summary"><img src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car_review_image_190/public/images/car-reviews/first-drives/legacy/1-mustang_crash.jpg?itok=RSYR62xF" class="rss-image" /></div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car_review_image_190/public/images/car-reviews/first-drives/legacy/1-mustang_crash.jpg?itok=RSYR62xF" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div></div></li>
 
 Chris Mies's high-speed collision at Bathurst highlights an overlooked danger of track tests
 
@@ -266,13 +374,23 @@ Spare a thought for poor Chris Mies, the man who had assorted pieces of kangaro
 The German driver's overalls and helmet, ...
 
 <li><a href="https://www.autocar.co.uk/car-review/volvo/v60" class="news-title" target="_blank" rel="noopener noreferrer">Volvo V60</a>
-<div class="summary"><img src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car_review_image_190/public/volvo-v60-review-2026-001.jpg?itok=coJjEH1q" class="rss-image" /></div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car_review_image_190/public/volvo-v60-review-2026-001.jpg?itok=coJjEH1q" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div></div></li>
 Does revived estate hit sweet spot between classic and modern appeal?
 
 We’re not in the habit of road testing cars fully eight years old, but in the case of the Volvo V60 we’re willing to make an exception on the basis of its era-ending status.The much-loved middle-ranking Swedish estate is not lon...
 
 <li><a href="https://www.autocar.co.uk/car-news/electric-cars/volvo-ex60-first-impressions-europes-only-true-software-defined-vehicle" class="news-title" target="_blank" rel="noopener noreferrer">Volvo EX60: first impressions of Europe's only "true" software-defined vehicle</a>
-<div class="summary"><img src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car_review_image_190/public/images/car-reviews/first-drives/legacy/volvo_ex60_mitfahrt_goteborg082.jpg?itok=i6Fj6Kv9" class="rss-image" /></div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car_review_image_190/public/images/car-reviews/first-drives/legacy/volvo_ex60_mitfahrt_goteborg082.jpg?itok=i6Fj6Kv9" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div></div></li>
 
 We get a passenger seat ride in Volvo's most advanced car yet, which it dubs a "game changer"
 
@@ -280,19 +398,16 @@ The new Volvo EX60 is Europe’s first “true” software-defined vehicle, the 
 Volvo revealed its new electric SUV in January, and first deliveries are ...
 
 <li><a href="https://www.autocar.co.uk/car-news/used-cars/proper-rwd-bmw-coup%C3%A9-%C2%A33500-how-buy-used-2-series" class="news-title" target="_blank" rel="noopener noreferrer">A proper RWD BMW coupé for £3500? How to buy a used 2 Series</a>
-<div class="summary"><img src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car_review_image_190/public/images/car-reviews/first-drives/legacy/1-m235i_cover_stu_009.jpg?itok=b_oZcMJo" class="rss-image" /></div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car_review_image_190/public/images/car-reviews/first-drives/legacy/1-m235i_cover_stu_009.jpg?itok=b_oZcMJo" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div></div></li>
 
 What happens when BMW puts the 4 Series on a boil wash? Premium quality and driver rewards 
 
 A baby 4 Series, or a big 1 Series? Whichever way you view the first-generation BMW 2 Series, it is good to drive, good to sit in and good to look at, and it went straight to the top of the class when it w...
-
-<li><a href="https://www.autocar.co.uk/car-news/new-cars/porsche-mulls-merging-taycan%C2%A0and-panamera-single-model" class="news-title" target="_blank" rel="noopener noreferrer">Porsche mulls merging Taycan and Panamera into single model</a>
-<div class="summary"><img src="https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/car_review_image_190/public/images/car-reviews/first-drives/legacy/porsche-rendering-2026-web.jpg?itok=4pRoYgNA" class="rss-image" /></div></li>
-
-Taycan could take on Panamera name in next generation, mirroring the ICE and electric Macans and Cayennes
-
-Porsche is considering merging the Taycan and Panamera into a single, unified model line with petrol, plug-in hybrid and fully electric variants.
-The proposals are part of broader cost-cuttin...
 
 
 <h3>Auto Express</h3>
@@ -300,19 +415,44 @@ The proposals are part of broader cost-cuttin...
 <em class="source-desc">英国汽车快讯</em>
 
 <li><a href="https://www.autoexpress.co.uk/features/369119/are-car-headlights-too-bright-how-hi-tech-led-lights-prioritise-driver-while" class="news-title" target="_blank" rel="noopener noreferrer">Are car headlights too bright? How hi-tech LED lights prioritise the driver but risk dazzling everyone else</a>
-<div class="summary"><img src="https://media.autoexpress.co.uk/image/private/s--Qmza5Bgu--/t_rss_image_w_845/v1773056897/autoexpress/2026/03/Vauxhall%20Grandland%20-%20lights%20on_kcgv2z.jpg" class="rss-image" />LED headlamps on cars may improve visibility at night, but some people say they’re too bright. We investigate the issue and what can be done...</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://media.autoexpress.co.uk/image/private/s--Qmza5Bgu--/t_rss_image_w_845/v1773056897/autoexpress/2026/03/Vauxhall%20Grandland%20-%20lights%20on_kcgv2z.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>LED headlamps on cars may improve visibility at night, but some people say they’re too bright. We investigate the issue and what can be done...</div></li>
 
 <li><a href="https://www.autoexpress.co.uk/features/369118/are-led-lights-too-bright-pictures" class="news-title" target="_blank" rel="noopener noreferrer">Are LED lights too bright? - pictures</a>
-<div class="summary"><img src="https://media.autoexpress.co.uk/image/private/s--Qmza5Bgu--/t_rss_image_w_845/v1773056897/autoexpress/2026/03/Vauxhall%20Grandland%20-%20lights%20on_kcgv2z.jpg" class="rss-image" />Images from our test in which we explore whether modern LED headlights are too bright...</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://media.autoexpress.co.uk/image/private/s--Qmza5Bgu--/t_rss_image_w_845/v1773056897/autoexpress/2026/03/Vauxhall%20Grandland%20-%20lights%20on_kcgv2z.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>Images from our test in which we explore whether modern LED headlights are too bright...</div></li>
 
 <li><a href="https://www.autoexpress.co.uk/kia/k4" class="news-title" target="_blank" rel="noopener noreferrer">Kia K4 review</a>
-<div class="summary"><img src="https://media.autoexpress.co.uk/image/private/s--YKwCV6ZD--/t_rss_image_w_845/v1771336613/autoexpress/2026/02/Kia%20K4%20UK%202026-17.jpg" class="rss-image" />Spacious compact hatchback relies on petrol power and a long kit list to draw in buyers...</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://media.autoexpress.co.uk/image/private/s--YKwCV6ZD--/t_rss_image_w_845/v1771336613/autoexpress/2026/02/Kia%20K4%20UK%202026-17.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>Spacious compact hatchback relies on petrol power and a long kit list to draw in buyers...</div></li>
 
 <li><a href="https://www.autoexpress.co.uk/opinion/369114/new-geneva-motor-show-type-event-coming-london-mike-rutherford" class="news-title" target="_blank" rel="noopener noreferrer">A new Geneva Motor Show-type event is coming to London, and it could be huge</a>
-<div class="summary"><img src="https://media.autoexpress.co.uk/image/private/s--6aukKIwX--/t_rss_image_w_845/v1773060022/autoexpress/2026/03/Opinion%20-%20London%20Motor%20Show.jpg" class="rss-image" />Mike Rutherford thinks we should be proud Britain will be staging two big motor show events in 2027...</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://media.autoexpress.co.uk/image/private/s--6aukKIwX--/t_rss_image_w_845/v1773060022/autoexpress/2026/03/Opinion%20-%20London%20Motor%20Show.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>Mike Rutherford thinks we should be proud Britain will be staging two big motor show events in 2027...</div></li>
 
 <li><a href="https://www.autoexpress.co.uk/mercedes/gla/367562/new-mercedes-gla-challenge-compact-suv-elite-cutting-edge-cla-tech" class="news-title" target="_blank" rel="noopener noreferrer">New Mercedes GLA to challenge compact SUV elite with cutting-edge CLA tech</a>
-<div class="summary"><img src="https://media.autoexpress.co.uk/image/private/s--gGsit8mN--/t_rss_image_w_845/v1773051591/autoexpress/2026/03/Mercedes%20GLA%20exclusive%20images.jpg" class="rss-image" />Our exclusive image previews how the Mk3 Mercedes GLA will look when it arrives later this year...</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://media.autoexpress.co.uk/image/private/s--gGsit8mN--/t_rss_image_w_845/v1773051591/autoexpress/2026/03/Mercedes%20GLA%20exclusive%20images.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>Our exclusive image previews how the Mk3 Mercedes GLA will look when it arrives later this year...</div></li>
 
 
 <hr>
@@ -324,20 +464,45 @@ The proposals are part of broader cost-cuttin...
 
 <em class="source-desc">全球汽车新闻聚合</em>
 
+<li><a href="https://www.carscoops.com/2026/03/subaru-levorg-hybrid-prototype/" class="news-title" target="_blank" rel="noopener noreferrer">Subaru Prototype Without A Hood Scoop Sparks WRX Hybrid Rumors</a>
+<div class="summary"><div class="img-container">
+            <img src="https://www.carscoops.com/wp-content/uploads/2026/03/24MY_WRX_TR-Sicily_9-copy-1024x576.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>The absence of a hood intake on a Subaru Levorg Layback prototype suggests the WRX’s wagon sibling could be embracing electrification...</div></li>
+
+<li><a href="https://www.carscoops.com/2026/03/alfa-romeo-junior-north-america-launch/" class="news-title" target="_blank" rel="noopener noreferrer">Alfa Romeo’s Smallest SUV Lands Just Across America’s Borders</a>
+<div class="summary"><div class="img-container">
+            <img src="https://www.carscoops.com/wp-content/uploads/2026/03/JuniorIbridaQ43-copy-1024x576.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>A new small Italian SUV has arrived in North America with hybrid power and reservations open, yet American buyers still cannot get one...</div></li>
+
 <li><a href="https://www.carscoops.com/2026/03/gas-prices-california-spike/" class="news-title" target="_blank" rel="noopener noreferrer">An $8.21 Gas Price In LA Shows Just How Fast Fuel Costs Are Rising</a>
-<div class="summary"><img src="https://www.carscoops.com/wp-content/uploads/2026/03/thbg5rg-f-1024x575.jpg" class="rss-image" />War jitters and California tax quirks push pump prices skyward in the Golden State, but not all stations are so expensive...</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://www.carscoops.com/wp-content/uploads/2026/03/thbg5rg-f-1024x575.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>War jitters and California tax quirks push pump prices skyward in the Golden State, but not all stations are so expensive...</div></li>
 
 <li><a href="https://www.carscoops.com/2026/03/bmw-m4-maloo-pickup-conversion/" class="news-title" target="_blank" rel="noopener noreferrer">Someone Took A Saw To An M4 And Built Something BMW Never Dared</a>
-<div class="summary"><img src="https://www.carscoops.com/wp-content/uploads/2026/03/bmwpowermagazin_1770327569_3826106320386795492_339481767-copy-2-1024x577.jpg" class="rss-image" />A custom M4 Maloo built by DinMann transforms the G82 coupe into a low-slung ute, now listed for sale with extensive performance upgrades...</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://www.carscoops.com/wp-content/uploads/2026/03/bmwpowermagazin_1770327569_3826106320386795492_339481767-copy-2-1024x577.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>A custom M4 Maloo built by DinMann transforms the G82 coupe into a low-slung ute, now listed for sale with extensive performance upgrades...</div></li>
 
 <li><a href="https://www.carscoops.com/2026/03/hyundai-verna-sedan-facelift/" class="news-title" target="_blank" rel="noopener noreferrer">Hyundai’s $12K Accent Successor Just Picked Up Features From Larger Cars</a>
-<div class="summary"><img src="https://www.carscoops.com/wp-content/uploads/2026/03/g4r5twfbvd-v-1024x576.jpg" class="rss-image" />The refreshed Verna adds new comfort tech, styling changes, and expanded colors while keeping its existing engines and competitive pricing...</div></li>
-
-<li><a href="https://www.carscoops.com/2026/03/tesla-cybertruck-fire-investigation/" class="news-title" target="_blank" rel="noopener noreferrer">Two Cybertrucks Go Up In Flames In California, And No One Knows Why</a>
-<div class="summary"><img src="https://www.carscoops.com/wp-content/uploads/2026/03/Tesla-Cybertruck-Fire-Santa-Monica-2-copy-1024x576.jpg" class="rss-image" />A mysterious fire destroyed two Cybertrucks parked side by side in California, and investigators still do not know what started the blaze...</div></li>
-
-<li><a href="https://www.carscoops.com/2026/03/jeep-recon-frunk-winch-patent/" class="news-title" target="_blank" rel="noopener noreferrer">Jeep Rethinks Where Your Next Winch Might Live</a>
-<div class="summary"><img src="https://www.carscoops.com/wp-content/uploads/2026/03/JP026_029REf9gfivi435i2h0tk9r0hkgusin-copy-1024x576.jpg" class="rss-image" />A new patent hints future electric off-roaders could relocate a key piece of recovery gear, addressing a long-standing design compromise...</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://www.carscoops.com/wp-content/uploads/2026/03/g4r5twfbvd-v-1024x576.jpg" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>The refreshed Verna adds new comfort tech, styling changes, and expanded colors while keeping its existing engines and competitive pricing...</div></li>
 
 
 <hr>
@@ -349,8 +514,17 @@ The proposals are part of broader cost-cuttin...
 
 <em class="source-desc">特斯拉新闻与资讯</em>
 
+<li><a href="https://www.teslarati.com/tesla-model-y-outsells-everything-in-three-states-ford-dominates/" class="news-title" target="_blank" rel="noopener noreferrer">Tesla Model Y outsells everything in three states, but Ford dominates</a>
+<div class="summary">The Model Y's success here highlights accelerating mainstream adoption of electric SUVs, which offer spacious interiors, impressive range, rapid acceleration, and low operating costs.</div></li>
+The post Tesla Model Y outsells everything in three states, but Ford dominates appeared first on TESLARATI....
+
 <li><a href="https://www.teslarati.com/elon-musk-updated-starship-v3-maiden-launch-target-date/" class="news-title" target="_blank" rel="noopener noreferrer">Elon Musk shares updated Starship V3 maiden launch target date</a>
-<div class="summary"><img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f680.png" class="rss-image" />The comment was posted on Musk’s official account on social media platform X.</div></li>
+<div class="summary"><div class="img-container">
+            <img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f680.png" alt="" class="content-img" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('img-error');"
+                 onload="this.parentElement.classList.add('img-loaded');">
+            <div class="img-placeholder">📷</div>
+        </div>The comment was posted on Musk’s official account on social media platform X.</div></li>
 The post Elon Musk shares updated Starship V3 maiden launch target date appeared first on TESLARATI....
 
 <li><a href="https://www.teslarati.com/tesla-launches-first-public-semi-megacharger/" class="news-title" target="_blank" rel="noopener noreferrer">Tesla opens first public Tesla Semi Megacharger site in Los Angeles</a>
@@ -361,28 +535,23 @@ The post Tesla opens first public Tesla Semi Megacharger site in Los Angeles app
 <div class="summary">The Loop’s feat was highlighted by The Boring Company in a post on its official account on social media platform X.</div></li>
 The post The Boring Company’s Vegas Loop moves 82k riders during CONEXPO appeared first on TESLARATI....
 
-<li><a href="https://www.teslarati.com/tesla-preps-build-its-most-massive-supercharger-yet-400-v4-stalls/" class="news-title" target="_blank" rel="noopener noreferrer">Tesla preps to build its most massive Supercharger yet: 400+ V4 stalls</a>
-<div class="summary">The project will be an expansion of the current Eddie World Supercharger in Yermo, California, and will take place in several stages.</div></li>
-The post Tesla preps to build its most massive Supercharger yet: 400+ V4 stalls appeared first on TESLARATI....
-
 
 <h3>CleanTechnica</h3>
 
 <em class="source-desc">清洁技术与电动汽车</em>
 
-<li><a href="https://cleantechnica.com/2026/03/09/top-selling-electric-cars-in-world-cybertruck-order-frenzy-solar-trumps-trump-in-texas-top-stories-of-the-week/" class="news-title" target="_blank" rel="noopener noreferrer">Top Selling Electric Cars in World, Cybertruck Order Frenzy, Solar Trumps Trump in Texas — Top Stories of the Week</a>
-<div class="summary">It&#8217;s been a while since we did a weekly roundup of the top stories on CleanTechnica, but I&#8217;m getting back to that again. This past week, the top stories on CleanTechnica were the following: Top Selling Electric Vehicles in the World — January 2026 Did Tesla Just Pull in a   ... [continue...</div></li>
+<li><a href="https://cleantechnica.com/2026/03/09/profiting-from-subsidies-while-proliferating-trumps-protectionism/" class="news-title" target="_blank" rel="noopener noreferrer">Profiting From Subsidies While Proliferating Trump’s Protectionism</a>
+<div class="summary">Following the Olympic closing ceremony, a lot has happened in the world. Trump gave the longest and most incoherent State of the Union address in history. The US started waging war on Iran. In a more encouraging demonstration of higher intelligence, we saw Punch the monkey and his plush orangutan   ...</div></li>
 
-<li><a href="https://cleantechnica.com/2026/03/09/a-better-way-to-compare-gas-electric-prices/" class="news-title" target="_blank" rel="noopener noreferrer">A Better Way To Compare Gas & Electric Prices</a>
-<div class="summary">If you drive an EV, you probably know this feeling. You drive past a gas station sign displaying $3.41 a gallon (or a lot more these days), and then you look at your charging app showing $0.48 per kilowatt-hour. It feels like comparing apples to binary code. It’s not just   ... [continued]</div></li>
-The post ...
+<li><a href="https://cleantechnica.com/2026/03/09/iran-was-facing-water-bankruptcy-before-the-bombs-began-falling/" class="news-title" target="_blank" rel="noopener noreferrer">Iran Was Facing “Water Bankruptcy” Before The Bombs Began Falling</a>
+<div class="summary">Operation Bomb, Bomb, Iran is now in full swing, but the people of that country are facing another existential threat -- water bankruptcy.</div></li>
+The post Iran Was Facing &#8220;Water Bankruptcy&#8221; Before The Bombs Began Falling appeared first on CleanTechnica....
 
-<li><a href="https://cleantechnica.com/2026/03/08/is-byds-flash-charging-revolutionary/" class="news-title" target="_blank" rel="noopener noreferrer">Is BYD’s Flash Charging Revolutionary?</a>
-<div class="summary">A few days ago, Larry Evans introduced us to BYD&#8217;s hot new &#8220;Flash Charging,&#8221; which is the quickest charging we&#8217;ve seen for passenger electric vehicles. In fact, it is a very big deal for multiple reasons. Jennifer Sensiba followed up earlier today to explain some of that, inc...</div></li>
+<li><a href="https://cleantechnica.com/2026/03/09/how-to-escape-the-trump-pump-on-an-e-bike/" class="news-title" target="_blank" rel="noopener noreferrer">How To Escape The Trump Pump On An E-Bike</a>
+<div class="summary">One ironic thing about today’s gas prices is that Republicans are always promising cheap fuel. But, put their asses in the chair and they always find a way to screw that up majorly. Right now, American families with a gas-powered vehicle in the driveway are paying through the nose while   ... [conti...</div></li>
 
-<li><a href="https://cleantechnica.com/2026/03/08/spring-forward-fall-back-are-time-changes-bad-for-your-health/" class="news-title" target="_blank" rel="noopener noreferrer">Spring Forward, Fall Back. Are Time Changes Bad For Your Health?</a>
-<div class="summary">Heath professionals say changing to daylight savings time comes with health risks. British Columbia thinks it has the answer. </div></li>
-The post Spring Forward, Fall Back. Are Time Changes Bad For Your Health? appeared first on CleanTechnica....
+<li><a href="https://cleantechnica.com/2026/03/09/over-400-tesla-fast-chargers-planned-for-new-charging-hub/" class="news-title" target="_blank" rel="noopener noreferrer">Over 400 Tesla Fast Chargers Planned For New Charging Hub</a>
+<div class="summary">Tesla has made some impressive EV charging progress recently. First, there&#8217;s the rather large new EV charging hub in Southern California that is primarily supported using solar power. Secondly, many more EV chargers for fully electric semi trucks were announced. Now there is word of a new fast...</div></li>
 
 
 <hr>
@@ -392,7 +561,7 @@ The post Spring Forward, Fall Back. Are Time Changes Bad For Your Health? appear
 
 <hr>
 
-*报告生成时间: 2026-03-09 22:41*
+*报告生成时间: 2026-03-10 00:00*
 *共收录 21 个汽车 RSS 源*
 *数据来源: 美洲、欧洲、亚洲主流汽车媒体*
 
