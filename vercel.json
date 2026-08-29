@@ -1,7 +1,6 @@
 {
   "name": "herclus-auto",
   "version": 2,
-  "public": true,
   "github": {
     "enabled": true
   }
